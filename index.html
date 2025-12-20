@@ -71,17 +71,6 @@
                                 <div class="icon-reverse-wrapper">
                                     <span class="btn-text">Заказать</span>
                                     <div class="btn-hack"></div>
-
-                                    <svg class="btn-icon" width="21" height="21" viewBox="0 0 25 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.5 4H9.5L11.5 9L9 10.5C10.071 12.6715 11.8285 14.429 14 15.5L15.5 13L20.5 15V19C20.5 19.5304 20.2893 20.0391 19.9142 20.4142C19.5391 20.7893 19.0304 21 18.5 21C14.5993 20.763 10.9202 19.1065 8.15683 16.3432C5.3935 13.5798 3.73705 9.90074 3.5 6Z"
-                                              stroke="white" stroke-width="1.5"/>
-                                    </svg>
-                                    <svg class="btn-icon" width="21" height="21" viewBox="0 0 25 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.5 4H9.5L11.5 9L9 10.5C10.071 12.6715 11.8285 14.429 14 15.5L15.5 13L20.5 15V19C20.5 19.5304 20.2893 20.0391 19.9142 20.4142C19.5391 20.7893 19.0304 21 18.5 21Z"
-                                              stroke="white" stroke-width="1.5"/>
-                                    </svg>
                                 </div>
                             </a>
 
@@ -90,19 +79,10 @@
                                href="javascript:void(0)"
                                data-clipboard-text="the1984@yaani.com">
                                 <div class="icon-reverse-wrapper">
-                                    <span class="btn-text">Копировать Mail</span>
+                                    <span class="btn-text" data-default="Копировать Mail">
+                                        Копировать Mail
+                                    </span>
                                     <div class="btn-hack"></div>
-
-                                    <svg class="btn-icon" width="21" height="21" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 10C8 9.47 8.21 8.96 8.59 8.59C8.96 8.21 9.47 8 10 8H18C18.53 8 19.04 8.21 19.41 8.59C19.79 8.96 20 9.47 20 10V18C20 18.53 19.79 19.04 19.41 19.41C19.04 19.79 18.53 20 18 20H10C9.47 20 8.96 19.79 8.59 19.41C8.21 19.04 8 18.53 8 18V10Z"
-                                              stroke="white" stroke-width="1.5"/>
-                                    </svg>
-                                    <svg class="btn-icon" width="21" height="21" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 10C8 9.47 8.21 8.96 8.59 8.59C8.96 8.21 9.47 8 10 8H18Z"
-                                              stroke="white" stroke-width="1.5"/>
-                                    </svg>
                                 </div>
                             </a>
 
@@ -144,16 +124,27 @@
     </div>
 </div>
 
+<!-- JS -->
 <script src="https://marveltheme.com/tf/html/bentofolio-html/assets/js/clipboard.min.js"></script>
 <script>
-    new ClipboardJS('.btn-copy');
+    const clipboard = new ClipboardJS('.btn-copy');
+
     document.querySelectorAll('.btn-copy').forEach(btn => {
+        const textEl = btn.querySelector('.btn-text');
+        const defaultText = textEl.dataset.default;
+
         btn.addEventListener('click', () => {
+            textEl.textContent = 'Скопировано ✓';
             btn.classList.add('active');
-            setTimeout(() => btn.classList.remove('active'), 1000);
+
+            setTimeout(() => {
+                textEl.textContent = defaultText;
+                btn.classList.remove('active');
+            }, 1000);
         });
     });
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
