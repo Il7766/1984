@@ -11,21 +11,31 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* Аккуратный шрифт кнопок — БЕЗ ломки */
+        /* === БЕЗОПАСНЫЙ ПРЕМИУМ-ШРИФТ КНОПОК (НИЧЕГО НЕ СЪЕЗЖАЕТ) === */
         .common-button-groups .btn-text {
-            font-family: "Poppins","Montserrat",system-ui,sans-serif;
+            font-family: "Poppins", "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 500;
             font-size: 15px;
             letter-spacing: 0.2px;
         }
 
-        /* Модалки */
-        .modal-content {
-            background: rgba(0,0,0,0.88);
-            border-radius: 20px;
+        /* QR модалка */
+        .qr-modal .modal-content {
+            background: rgba(0, 0, 0, 0.85);
             border: none;
+            border-radius: 20px;
         }
-        .btn-close {
+        .qr-modal .modal-body {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .qr-modal img {
+            max-width: 280px;
+            width: 100%;
+            border: 8px solid #fff;
+            border-radius: 15px;
+        }
+        .qr-modal .btn-close {
             filter: invert(1);
         }
     </style>
@@ -34,10 +44,10 @@
 <body class="video-bg-image-bg-green bg_image">
 
 <div class="container">
-    <div class="row justify-content-center pt-5">
+    <div class="row justify-content-center align-items-start pt-5">
         <div class="col-xl-4 col-lg-6 col-md-8 col-sm-10">
 
-            <div class="tmp-profile-card tmponhover single-animation active">
+            <div class="tmp-profile-card with-sticky profile-picture-area mt--20 paralax-image tmponhover single-animation active">
                 <div class="tmp-card-body">
 
                     <div class="image text-center">
@@ -54,31 +64,29 @@
 
                         <div class="info-box">
                             <span class="phone">
-                                Телефон:
-                                <a href="tel:+79958881984">+7 995 888-19-84</a>
+                                Телефон: <a href="tel:+79958881984">+79958881984</a>
                             </span>
                             <span class="mail">
-                                Email:
-                                <a href="mailto:the1984@yaani.com">the1984@yaani.com</a>
+                                Email: <a href="mailto:the1984@yaani.com">the1984@yaani.com</a>
                             </span>
                         </div>
 
                         <!-- КНОПКИ -->
                         <div class="common-button-groups">
 
-                            <!-- Заказать -->
-                            <a class="tmp-btn btn-border tmp-modern-button w-100 btn-md"
+                            <!-- Заказать звонок (ОТКРЫВАЕТ МОДАЛКУ) -->
+                            <a class="tmp-btn hover-icon-reverse btn-border tmp-modern-button w-100 btn-md"
                                href="#"
                                data-bs-toggle="modal"
                                data-bs-target="#orderModal">
                                 <div class="icon-reverse-wrapper">
-                                    <span class="btn-text">Заказать</span>
+                                    <span class="btn-text">Заказать звонок</span>
                                     <div class="btn-hack"></div>
                                 </div>
                             </a>
 
                             <!-- Копировать Mail -->
-                            <a class="tmp-btn btn-border tmp-modern-button w-100 btn-md btn-copy"
+                            <a class="tmp-btn hover-icon-reverse btn-border tmp-modern-button w-100 btn-md btn-copy"
                                href="javascript:void(0)"
                                data-clipboard-text="the1984@yaani.com">
                                 <div class="icon-reverse-wrapper">
@@ -92,11 +100,14 @@
                         </div>
 
                         <!-- СОЦСЕТИ -->
-                        <div class="social-area mt--30">
-                            <div class="social-link justify-content-center">
-                                <a href="https://wa.me/79958881984" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                                <a href="https://t.me/+79958881984" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                                <a href="https://the1984.org" target="_blank"><i class="fa-solid fa-globe"></i></a>
+                        <div class="social-media-icon">
+                            <div class="social-area mt--30">
+                                <div class="social-link justify-content-center">
+                                    <a href="https://wa.me/79958881984" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                                    <a href="https://t.me/+79958881984" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#qrModal"><i class="fa-solid fa-qrcode"></i></a>
+                                    <a href="https://the1984.org" target="_blank"><i class="fa-solid fa-globe"></i></a>
+                                </div>
                             </div>
                         </div>
 
@@ -109,14 +120,29 @@
     </div>
 </div>
 
-<!-- МОДАЛКА: ЗАКАЗАТЬ ЗВОНОК -->
-<div class="modal fade" id="orderModal" tabindex="-1">
+<!-- QR MODAL -->
+<div class="modal fade qr-modal" id="qrModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/images/qr-code.png" alt="QR">
+                <p class="text-white mt-3">Отсканируйте для связи</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal fade" id="orderModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background:rgba(0,0,0,.85);border:none;border-radius:20px;">
 
             <div class="modal-header border-0">
                 <h5 class="modal-title text-white">Заказать звонок</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body">
@@ -132,12 +158,11 @@
                         <input type="tel" class="form-control" required>
                     </div>
 
-                    <button class="btn btn-light w-100" type="submit">
+                    <button type="submit" class="btn btn-light w-100">
                         Отправить
                     </button>
 
-                    <div id="orderSuccess"
-                         class="text-success text-center mt-3 d-none">
+                    <div id="orderSuccess" class="text-success text-center mt-3 d-none">
                         Заявка отправлена ✓
                     </div>
 
@@ -150,38 +175,38 @@
 
 <!-- JS -->
 <script src="https://marveltheme.com/tf/html/bentofolio-html/assets/js/clipboard.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    new ClipboardJS('.btn-copy');
+
+    document.querySelectorAll('.btn-copy').forEach(btn => {
+        const textEl = btn.querySelector('.btn-text');
+        const defaultText = textEl.dataset.default;
+
+        btn.addEventListener('click', () => {
+            textEl.textContent = 'Скопировано ✓';
+            setTimeout(() => {
+                textEl.textContent = defaultText;
+            }, 1000);
+        });
+    });
+</script>
 
 <script>
-/* Копировать Mail */
-new ClipboardJS('.btn-copy');
-
-document.querySelectorAll('.btn-copy').forEach(btn => {
-    const text = btn.querySelector('.btn-text');
-    const def = text.dataset.default;
-
-    btn.addEventListener('click', () => {
-        text.textContent = 'Скопировано ✓';
-        setTimeout(() => text.textContent = def, 1000);
-    });
-});
-
-/* Отправка формы */
 document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const ok = document.getElementById('orderSuccess');
-    ok.classList.remove('d-none');
+    const success = document.getElementById('orderSuccess');
+    success.classList.remove('d-none');
 
     setTimeout(() => {
-        ok.classList.add('d-none');
-        bootstrap.Modal.getInstance(
-            document.getElementById('orderModal')
-        ).hide();
+        success.classList.add('d-none');
+        bootstrap.Modal.getInstance(document.getElementById('orderModal')).hide();
         this.reset();
     }, 1500);
 });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
